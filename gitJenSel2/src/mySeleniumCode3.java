@@ -7,21 +7,25 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class mySeleniumCode2 {
+public class mySeleniumCode3 {
 
 	public static void main(String[] args) throws Exception {
+		ChromeOptions options = new ChromeOptions();
 		System.out.println("      >>>>>>>>> Started Execution");
 		
 		DesiredCapabilities capability = DesiredCapabilities.chrome();
 		//ChromeOptions capability = new ChromeOptions();
 		capability.setBrowserName("chrome");
-		capability.setPlatform(Platform.WIN10);
-		
-
+		//capability.setPlatform(Platform.WIN10);
+		capability.setCapability(ChromeOptions.CAPABILITY, options);
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-		WebDriver myDriver;
-		myDriver = new RemoteWebDriver(new URL("http://localhost:1234/wd/hub"), capability); 
+		//options.addArguments("--headless");
+		options.merge(capability);
+		
+		//WebDriver myDriver;
+		//myDriver = new RemoteWebDriver(new URL("http://localhost:1234/wd/hub"), capability); 
 
+		ChromeDriver myDriver = new ChromeDriver(options);
 		
 		myDriver.manage().window().maximize(); 
 		
